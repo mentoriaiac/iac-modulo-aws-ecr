@@ -6,7 +6,7 @@ provider "aws" {
 
 module "ecr-mentoria" {
   source    = "../"
-  repo_name = "metal-corporation"
+  repo_name = "api-tika"
 
   tags = {
     Env          = "production"

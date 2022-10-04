@@ -27,6 +27,20 @@ module "ecr-mentoria" {
   source         = "git::https://github.com/mentoriaiac/iac-modulo-aws-ecs.git?ref=v1"
   repo_name      = "nome-repositório"
 
+  # OPTIONAL
+  lifecycle_rules = [
+    {
+      selection = {
+        countType   = "imageCountMoreThan"
+        countUnit   = ""
+        countNumber = 1
+        tagPrefixList = ["prod"]
+        tagStatus   = "any"
+      }
+      description = "Keep last 4 images"
+    }
+  ]
+
   tags = {
     Env          = "production"
     Team         = "time-terraform"
